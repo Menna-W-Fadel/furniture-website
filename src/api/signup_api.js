@@ -16,16 +16,16 @@ export const registerUser = async (email, password) => {
 
     switch (error.code) {
       case "auth/email-already-in-use":
-        throw new Error("Email already exists");
+        throw new Error("An account with this email already exists. Please sign in instead.");
 
       case "auth/invalid-email":
-        throw new Error("Invalid email");
+        throw new Error("Please enter a valid email address.");
 
       case "auth/weak-password":
-        throw new Error("Password should be at least 6 characters");
+        throw new Error("Your password is too weak. Please use at least 6 characters with a mix of letters and numbers.");
 
       default:
-        throw new Error("Signup failed");
+        throw new Error("Something went wrong while creating your account. Please try again.");
     }
   }
 };

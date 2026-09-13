@@ -30,10 +30,10 @@ const ContactPage = () => {
 
   const handleSubmit = () => {
     if (!formData.name || !formData.email || !formData.message) {
-      setSnackbar({ open: true, message: "Please fill in all required fields.", severity: "warning" });
+      setSnackbar({ open: true, message: "Please make sure all required fields are filled in.", severity: "warning" });
       return;
     }
-    setSnackbar({ open: true, message: "Message sent successfully! We'll get back to you soon.", severity: "success" });
+    setSnackbar({ open: true, message: "Your message has been sent! We'll get back to you soon.", severity: "success" });
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
 

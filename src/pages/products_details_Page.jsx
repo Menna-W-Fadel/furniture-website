@@ -38,10 +38,28 @@ const ProductDetailsPage = () => {
 
   if (!product) {
     return (
-      <Container sx={{ py: 10 }}>
-        <Typography variant="h5" color="var(--color-title)">
-          Product not found
+      <Container sx={{ py: 10, textAlign: "center" }}>
+        <Typography variant="h5" color="var(--color-title)" fontWeight={800}>
+          We couldn't find this product
         </Typography>
+        <Typography sx={{ mt: 1.5, color: "var(--color-text)" }}>
+          It may have been removed or the link might be incorrect.
+        </Typography>
+        <Button
+          variant="contained"
+          onClick={() => window.history.back()}
+          sx={{
+            mt: 3,
+            px: 4,
+            py: 1.3,
+            borderRadius: 999,
+            bgcolor: "var(--color-primary)",
+            fontWeight: 800,
+            "&:hover": { bgcolor: "var(--color-primary-hover)" },
+          }}
+        >
+          Go Back
+        </Button>
       </Container>
     );
   }

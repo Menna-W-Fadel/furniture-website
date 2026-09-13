@@ -26,7 +26,7 @@ const SigninPage = () => {
     setError("");
 
     if (!email || !password) {
-      setError("Please fill in all fields.");
+      setError("Please enter both your email and password to continue.");
       return;
     }
 
@@ -35,7 +35,7 @@ const SigninPage = () => {
       await loginUser(email, password);
       navigate("/");
     } catch (err) {
-      setError(err.message || "Login failed.");
+      setError(err.message || "We couldn't sign you in right now. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -49,7 +49,7 @@ const SigninPage = () => {
       await signInWithGoogle();
       navigate("/");
     } catch (err) {
-      setError(err.message || "Google sign-in failed.");
+      setError(err.message || "Google sign-in was unsuccessful. Please try again.");
     } finally {
       setLoading(false);
     }

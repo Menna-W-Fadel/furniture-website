@@ -48,7 +48,7 @@ const FavouritesPage = () => {
             fontWeight: 800,
           }}
         >
-          Your favorites is empty
+          Your favorites are empty
         </Typography>
 
         <Typography

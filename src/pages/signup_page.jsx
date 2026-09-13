@@ -24,7 +24,7 @@ const SignupPage = () => {
     setError("");
 
     if (!email || !password) {
-      setError("Please fill in all fields.");
+      setError("Please enter both your email and password to continue.");
       return;
     }
 
@@ -33,7 +33,7 @@ const SignupPage = () => {
       await registerUser(email, password);
       navigate("/login");
     } catch (err) {
-      setError(err.message || "Signup failed.");
+      setError(err.message || "We couldn't create your account right now. Please try again.");
     } finally {
       setLoading(false);
     }

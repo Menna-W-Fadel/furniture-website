@@ -45,7 +45,7 @@ const CheckoutPage = () => {
         const data = await res.json().catch(() => ({}));
         if (!res.ok || !data.clientSecret) {
           throw new Error(
-            data.error || `Payment server error (status ${res.status})`
+            data.error || "We're having trouble connecting to our payment service. Please try again."
           );
         }
         return data;
@@ -55,7 +55,7 @@ const CheckoutPage = () => {
       })
       .catch((err) => {
         if (!cancelled) {
-          setError(err.message || "Could not reach the payment server.");
+          setError(err.message || "We couldn't reach our payment service. Please check your connection and try again.");
         }
       })
       .finally(() => {
@@ -151,8 +151,7 @@ const CheckoutPage = () => {
           <Typography
             sx={{ mt: 1, fontSize: 13, color: "var(--color-text)", opacity: 0.7 }}
           >
-            Tip: make sure the backend is running locally (cd backend then npm
-            start).
+            If this issue persists, please contact our support team for assistance.
           </Typography>
           <Button
             onClick={() => navigate("/cart")}
