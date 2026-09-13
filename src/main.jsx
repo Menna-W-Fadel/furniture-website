@@ -10,8 +10,10 @@ import { ProductsProvider } from "./context/productsContext";
 import {CartProvider} from "./context/cartContext";
 import {AuthProvider} from "./context/authContext";
 import {FavoritesProvider } from "./context/favouritesContext";
+import {SnackbarProvider} from "./context/snackbarContext";
 
 createRoot(document.getElementById("root")).render(
+    <SnackbarProvider>
     <FavoritesProvider>
     <CartProvider>
       <ProductsProvider>
@@ -20,5 +22,6 @@ createRoot(document.getElementById("root")).render(
         </AuthProvider>
       </ProductsProvider>
     </CartProvider>
-    </FavoritesProvider>,
+    </FavoritesProvider>
+    </SnackbarProvider>,
 );

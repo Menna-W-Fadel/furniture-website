@@ -15,10 +15,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useFavorites } from "../context/favouritesContext";
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "../context/snackbarContext";
 
 const FavouritesPage = () => {
   const { favorites, toggleFavorite } = useFavorites();
   const navigate = useNavigate();
+  const { showMessage } = useSnackbar();
 
   if (favorites.length === 0) {
      return (
@@ -129,7 +131,10 @@ const FavouritesPage = () => {
 
                 {/* REMOVE BUTTON (FLOATING) */}
                 <IconButton
-                  onClick={() => toggleFavorite(item)}
+                  onClick={() => {
+                    toggleFavorite(item);
+                    showMessage(`${item.name} removed from favorites`);
+                  }}
                   sx={{
                     position: "absolute",
                     top: 10,

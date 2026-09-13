@@ -15,6 +15,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/cartContext";
 import { useFavorites } from "../context/favouritesContext";
+import { useSnackbar } from "../context/snackbarContext";
 
 const ProductCard = ({
   id,
@@ -35,11 +36,19 @@ const ProductCard = ({
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { favorites, toggleFavorite } = useFavorites();
-const isFav = favorites.some((item) => item.id === id);
+  const { showMessage } = useSnackbar();
+  const isFav = favorites.some((item) => item.id === id);
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
     addToCart({ id, slug, name, image, price, finalPrice, quantity: 1 });
+    showMessage(`${name} added to cart`);
+  };
+
+  const handleToggleFavorite = (e) => {
+    e.stopPropagation();
+    toggleFavorite({ id, slug, name, image, price, finalPrice });
+    showMessage(isFav ? `${name} removed from favorites` : `${name} added to favorites`);
   };
 
   return (
@@ -131,10 +140,7 @@ const isFav = favorites.some((item) => item.id === id);
           }}
         >
           <IconButton
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleFavorite({ id, slug, name, image, price, finalPrice });
-            }}
+            onClick={handleToggleFavorite}
             sx={{
               width: 38,
               height: 38,

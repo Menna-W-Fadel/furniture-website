@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Button, Stack } from "@mui/material";
+import { Box, Container, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import SearchOffOutlinedIcon from "@mui/icons-material/SearchOffOutlined";
@@ -125,12 +125,17 @@ const NotFound = () => {
         </Typography>
 
         {/* Buttons */}
-        <Stack
-          direction={{ xs: "column", sm: "row" }}
-          spacing={2}
-          justifyContent="center"
-          className="not-found-buttons"
-          sx={{ mt: 5 }}
+        <Box
+          sx={{
+            mt: 5,
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+            gap: 2,
+            justifyContent: "center",
+            alignItems: "center",
+            opacity: 0,
+            animation: "slideUpFade 0.6s ease 0.7s forwards",
+          }}
         >
           <Button
             onClick={() => navigate("/")}
@@ -169,7 +174,7 @@ const NotFound = () => {
           >
             Browse Shop
           </Button>
-        </Stack>
+        </Box>
       </Container>
     </Box>
   );

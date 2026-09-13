@@ -15,6 +15,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/cartContext";
+import { useSnackbar } from "../context/snackbarContext";
 
 const CartPage = () => {
   const {
@@ -25,6 +26,7 @@ const CartPage = () => {
   } = useCart();
 
   const navigate = useNavigate();
+  const { showMessage } = useSnackbar();
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.finalPrice * item.quantity,
@@ -187,7 +189,10 @@ const CartPage = () => {
                     }}
                   >
                     <IconButton
-                      onClick={() => removeFromCart(item.id)}
+                      onClick={() => {
+                        removeFromCart(item.id);
+                        showMessage(`${item.name} removed from cart`);
+                      }}
                       sx={{
                         border: "1px solid rgba(48,59,77,0.12)",
                         mb: { xs: 0, sm: 1.5 },

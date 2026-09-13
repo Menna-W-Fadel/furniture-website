@@ -21,12 +21,14 @@ import { useParams } from "react-router-dom";
 import { useProducts } from "../context/productsContext";
 import { useCart } from "../context/cartContext";
 import { useFavorites } from "../context/favouritesContext";
+import { useSnackbar } from "../context/snackbarContext";
 
 const ProductDetailsPage = () => {
   const { slug } = useParams();
   const { products } = useProducts();
   const { addToCart } = useCart();
   const { favorites, toggleFavorite } = useFavorites();
+  const { showMessage } = useSnackbar();
 
   const product = useMemo(
     () => products.find((p) => p.slug === slug),
@@ -71,6 +73,12 @@ const ProductDetailsPage = () => {
       ...product,
       quantity: qty,
     });
+    showMessage(`${product.name} added to cart`);
+  };
+
+  const handleToggleFavorite = () => {
+    toggleFavorite(product);
+    showMessage(isFav ? `${product.name} removed from favorites` : `${product.name} added to favorites`);
   };
 
   return (
@@ -364,7 +372,7 @@ const ProductDetailsPage = () => {
                 Add to Cart
               </Button>
 
-              <IconButton onClick={() => toggleFavorite(product)}>
+              <IconButton onClick={handleToggleFavorite}>
                 {isFav ? (
                   <FavoriteIcon sx={{ color: "#fc830e" }} />
                 ) : (
