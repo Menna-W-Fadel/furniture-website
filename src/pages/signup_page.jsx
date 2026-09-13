@@ -57,33 +57,34 @@ const SignupPage = () => {
         {/* LEFT PANEL */}
         <Box
           sx={{
-            bgcolor: "var(--bg-section-alt)",
+            bgcolor: "var(--color-title)",
+            color: "var(--color-white)",
             p: { xs: 4, md: 6 },
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
           }}
         >
-          <Typography sx={{ color: "var(--color-title)", fontWeight: 900, letterSpacing: 2 }}>
-            JOIN US
+          <Typography sx={{ color: "var(--color-primary)", fontWeight: 900, letterSpacing: 2 }}>
+            FURNETA
           </Typography>
 
-          <Typography variant="h3" sx={{ mt: 2, fontWeight: 900, lineHeight: 1.05, color: "var(--color-title)" }}>
+          <Typography variant="h3" sx={{ mt: 2, fontWeight: 900, lineHeight: 1.05 }}>
             Create your account.
           </Typography>
 
-          <Typography sx={{ mt: 2, color: "var(--color-text)", lineHeight: 1.8 }}>
+          <Typography sx={{ mt: 2, opacity: 0.8, lineHeight: 1.8 }}>
             Register to save favorites, track orders, and complete checkout faster.
           </Typography>
 
           <Stack direction="row" spacing={1.2} sx={{ mt: 4, flexWrap: "wrap" }}>
-            <Box sx={{ px: 2, py: 1, borderRadius: 999, bgcolor: "rgba(255,255,255,0.55)" }}>
+            <Box sx={{ px: 2, py: 1, borderRadius: 999, bgcolor: "rgba(255,255,255,0.08)" }}>
               Secure profile
             </Box>
-            <Box sx={{ px: 2, py: 1, borderRadius: 999, bgcolor: "rgba(255,255,255,0.55)" }}>
+            <Box sx={{ px: 2, py: 1, borderRadius: 999, bgcolor: "rgba(255,255,255,0.08)" }}>
               Wishlist sync
             </Box>
-            <Box sx={{ px: 2, py: 1, borderRadius: 999, bgcolor: "rgba(255,255,255,0.55)" }}>
+            <Box sx={{ px: 2, py: 1, borderRadius: 999, bgcolor: "rgba(255,255,255,0.08)" }}>
               Faster checkout
             </Box>
           </Stack>
