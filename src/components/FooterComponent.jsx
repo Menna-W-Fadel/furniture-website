@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Container,
@@ -29,7 +28,7 @@ const FooterComponent = () => {
     >
       <Container maxWidth="xl">
         <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Typography variant="h5" sx={{ fontWeight: 900, color: "var(--color-primary)" }}>
               Furneta
             </Typography>
@@ -56,7 +55,7 @@ const FooterComponent = () => {
             </Stack>
           </Grid>
 
-          <Grid item xs={6} md={2}>
+          <Grid size={{ xs: 6, md: 2 }}>
             <Typography sx={{ fontWeight: 800, mb: 2 }}>Pages</Typography>
             <Stack spacing={1}>
               <Link href="/" underline="none" color="inherit">Home</Link>
@@ -66,7 +65,7 @@ const FooterComponent = () => {
             </Stack>
           </Grid>
 
-          <Grid item xs={6} md={3}>
+          <Grid size={{ xs: 6, md: 3 }}>
             <Typography sx={{ fontWeight: 800, mb: 2 }}>Support</Typography>
             <Stack spacing={1}>
               <Typography sx={{ opacity: 0.85 }}>Shipping</Typography>
@@ -76,7 +75,7 @@ const FooterComponent = () => {
             </Stack>
           </Grid>
 
-          <Grid item xs={12} md={3}>
+          <Grid size={{ xs: 12, md: 3 }}>
             <Typography sx={{ fontWeight: 800, mb: 2 }}>Newsletter</Typography>
             <Typography sx={{ opacity: 0.8, lineHeight: 1.7, mb: 2 }}>
               Subscribe for updates, offers, and product drops.

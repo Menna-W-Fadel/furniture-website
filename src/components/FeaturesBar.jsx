@@ -34,13 +34,11 @@ const FeaturesBar = () => {
         backgroundColor: "var(--color-white)",
         py: 4,
         px: { xs: 2, md: 8 },
-        display:"flex",
-        justifyContent:"space-around",
       }}
     >
       <Grid container spacing={3}>
         {features.map((item, index) => (
-          <Grid item xs={12} sm={6} md={3} key={item}>
+          <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
             <Box
               sx={{
                 display: "flex",
@@ -52,7 +50,7 @@ const FeaturesBar = () => {
               <Box
                 sx={{
                   color: "var(--color-primary)",
-                  fontSize: 45,
+                  fontSize: { xs: 32, md: 45 },
                   display: "flex",
                   alignItems: "center",
                 }}
@@ -66,7 +64,7 @@ const FeaturesBar = () => {
                   sx={{
                     color: "var(--color-title)",
                     fontWeight: 600,
-                    fontSize: "1.7rem",
+                    fontSize: { xs: "1.05rem", md: "1.7rem" },
                   }}
                 >
                   {item.title}

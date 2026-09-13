@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   AppBar,
   Toolbar,
   Box,
-  Typography,
   IconButton,
   Drawer,
   List,
@@ -15,7 +14,6 @@ import {
 
 import MenuIcon from "@mui/icons-material/Menu";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-// import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -23,6 +21,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { useCart } from "../context/cartContext";
 import { useFavorites } from "../context/favouritesContext";
+
 const pages = [
   { name: "Home", path: "/" },
   { name: "Shop", path: "/shop" },
@@ -40,32 +39,6 @@ const NavBar = () => {
   const { favorites } = useFavorites();
   const totalFavorites = favorites.length;
   const toggleDrawer = () => setOpen(!open);
-  const navLinkStyle = ({ isActive }) => ({
-    textDecoration: "none",
-    color: "#303b4d",
-    fontWeight: 500,
-    position: "relative",
-    paddingBottom: "5px",
-
-    // remove borderBottom
-    borderBottom: "none",
-
-    // pseudo underline
-    "&::after": {
-      content: '""',
-      position: "absolute",
-      width: isActive ? "100%" : "0%",
-      height: "2px",
-      bottom: 0,
-      left: 0,
-      backgroundColor: "#fc830e",
-      transition: "0.3s",
-    },
-
-    "&:hover::after": {
-      width: "100%",
-    },
-  });
 
   return (
     <AppBar position="static" elevation={0} sx={{ background: "#fff", px: 2 }}>
@@ -141,7 +114,6 @@ const NavBar = () => {
                   ) : (
                     <FavoriteBorderIcon sx={{ color: "#303b4d" }} />
                   )}
-                  {/* <FavoriteBorderIcon sx={{ color: "#303b4d" }} /> */}
                 </Badge>
               </IconButton>
 

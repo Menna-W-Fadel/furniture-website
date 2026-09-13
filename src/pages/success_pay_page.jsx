@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Box, Typography, Button, Paper } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { keyframes } from "@emotion/react";
@@ -17,6 +17,7 @@ const SuccessPayPage = () => {
 
   useEffect(() => {
     clearCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

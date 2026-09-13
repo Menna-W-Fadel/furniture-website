@@ -1,5 +1,4 @@
 
-import React from "react";
 import { useProducts } from "../context/productsContext";
 import ProductCard from "../components/ProductCard";
 
@@ -21,9 +20,9 @@ const ShopPage = () => {
         <div className="shop-hero-content">
           <h1 className="word-outline">SHOP</h1>
 
-          <h2 style={{fontSize:30}}>Shop</h2>
+          <h2 className="shop-hero-subtitle">Shop</h2>
 
-          <p style={{fontSize:20}}>
+          <p className="shop-hero-desc">
             Discover furniture that reflects your personality and elevates your space.
           </p>
         </div>

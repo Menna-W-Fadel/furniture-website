@@ -7,21 +7,33 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(",")
+  : ["http://localhost:5173", "http://localhost:3000"];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
 app.use(express.json());
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
-app.post("/create-payment-intent", async (req, res) => {
+app.post("/api/create-payment-intent", async (req, res) => {
   try {
     const { cartItems } = req.body;
 
-    // calculate total
     const total = cartItems.reduce((acc, item) => {
       return acc + item.finalPrice * item.quantity;
     }, 0);
 
-    // Stripe expects cents
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(total * 100),
       currency: "usd",
@@ -33,7 +45,6 @@ app.post("/create-payment-intent", async (req, res) => {
     res.send({
       clientSecret: paymentIntent.client_secret,
     });
-
   } catch (error) {
     res.status(500).send({
       error: error.message,
@@ -41,6 +52,6 @@ app.post("/create-payment-intent", async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT, () => {
-  console.log("Server running");
+app.listen(process.env.PORT || 4000, () => {
+  console.log("Server running on port", process.env.PORT || 4000);
 });

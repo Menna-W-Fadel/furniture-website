@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Card,
   CardContent,
   Box,
   Typography,
-  Button,
   Chip,
   Rating,
   IconButton,
@@ -68,7 +67,7 @@ const isFav = favorites.some((item) => item.id === id);
           alt={name}
           sx={{
             width: "100%",
-            height: 260,
+            height: { xs: 200, md: 260 },
             objectFit: "cover",
             transform: hovered ? "scale(1.08)" : "scale(1)",
             transition: "transform 0.6s ease",

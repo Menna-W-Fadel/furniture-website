@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import {
   Box,
   Container,
@@ -8,12 +8,35 @@ import {
   Button,
   Grid,
   Stack,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 
 const ContactPage = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name || e.target.label?.toLowerCase()]: e.target.value });
+  };
+
+  const handleSubmit = () => {
+    if (!formData.name || !formData.email || !formData.message) {
+      setSnackbar({ open: true, message: "Please fill in all required fields.", severity: "warning" });
+      return;
+    }
+    setSnackbar({ open: true, message: "Message sent successfully! We'll get back to you soon.", severity: "success" });
+    setFormData({ name: "", email: "", subject: "", message: "" });
+  };
+
   return (
     <Box sx={{ py: 8 }}>
       <Container maxWidth="xl">
@@ -40,10 +63,10 @@ const ContactPage = () => {
 
           <Box sx={{ position: "relative" }}>
             <Typography variant="h3" fontWeight={900}>
-              Let’s talk
+              Let's talk
             </Typography>
             <Typography sx={{ mt: 2, opacity: 0.85, maxWidth: 600 }}>
-              Have a question, issue, or idea? We’re here to help you find the
+              Have a question, issue, or idea? We're here to help you find the
               perfect furniture experience.
             </Typography>
           </Box>
@@ -52,7 +75,7 @@ const ContactPage = () => {
         {/* CONTENT */}
         <Grid container spacing={4} sx={{ mt: 3 }}>
           {/* LEFT INFO */}
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Stack spacing={2.5}>
               {[
                 {
@@ -80,6 +103,9 @@ const ContactPage = () => {
                     display: "flex",
                     gap: 2,
                     alignItems: "center",
+                    width: "100%",
+                    maxWidth: { xs: 420 },
+                    mx: { xs: "auto" },
                     border: "1px solid rgba(48,59,77,0.08)",
                     transition: "0.3s",
                     "&:hover": {
@@ -116,7 +142,7 @@ const ContactPage = () => {
           </Grid>
 
           {/* FORM */}
-          <Grid item xs={12} md={8}>
+          <Grid size={{ xs: 12, md: 8 }}>
             <Paper
               elevation={0}
               sx={{
@@ -131,33 +157,66 @@ const ContactPage = () => {
               </Typography>
 
               <Grid container spacing={2} sx={{ mt: 1 }}>
-                {["Name", "Email"].map((label) => (
-                  <Grid item xs={12} md={6} key={label}>
-                    <TextField
-                      fullWidth
-                      label={label}
-                      variant="outlined"
-                      sx={{
-                        "& .MuiOutlinedInput-root": {
-                          borderRadius: 3,
-                        },
-                      }}
-                    />
-                  </Grid>
-                ))}
-
-                <Grid item xs={12}>
-                  <TextField fullWidth label="Subject" />
+                <Grid size={{ xs: 12, md: 6 }}>
+                  <TextField
+                    fullWidth
+                    label="Name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    variant="outlined"
+                    sx={{
+                      "& .MuiOutlinedInput-root": {
+                        borderRadius: 3,
+                      },
+                    }}
+                  />
                 </Grid>
 
-                <Grid item xs={12}>
-                  <TextField fullWidth multiline rows={6} label="Message" />
+                <Grid size={{ xs: 12, md: 6 }}>
+                  <TextField
+                    fullWidth
+                    label="Email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    variant="outlined"
+                    sx={{
+                      "& .MuiOutlinedInput-root": {
+                        borderRadius: 3,
+                      },
+                    }}
+                  />
                 </Grid>
 
-                <Grid item xs={12}>
+                <Grid size={{ xs: 12 }}>
+                  <TextField
+                    fullWidth
+                    label="Subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                  />
+                </Grid>
+
+                <Grid size={{ xs: 12 }}>
+                  <TextField
+                    fullWidth
+                    multiline
+                    rows={6}
+                    label="Message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                  />
+                </Grid>
+
+                <Grid size={{ xs: 12 }}>
                   <Button
                     fullWidth
                     variant="contained"
+                    onClick={handleSubmit}
                     sx={{
                       py: 1.5,
                       borderRadius: 999,
@@ -176,6 +235,21 @@ const ContactPage = () => {
           </Grid>
         </Grid>
       </Container>
+
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={4000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => setSnackbar({ ...snackbar, open: false })}
+          severity={snackbar.severity}
+          sx={{ width: "100%" }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

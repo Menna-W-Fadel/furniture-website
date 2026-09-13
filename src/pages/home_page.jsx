@@ -1,4 +1,3 @@
-import React from "react";
 import HeroSlider from "../components/hero_slider";
 import FeaturesBar from "../components/FeaturesBar";
 import ExploreCategories from "../components/ExploreCategories";

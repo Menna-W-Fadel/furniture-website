@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Container,
   Typography,
@@ -105,7 +104,7 @@ const FavouritesPage = () => {
       {/* GRID */}
       <Grid container spacing={3}>
         {favorites.map((item) => (
-          <Grid item xs={12} sm={6} md={4} key={item.id}>
+          <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.id}>
 
             <Card
               sx={{

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Container,
@@ -176,12 +175,22 @@ const CartPage = () => {
                     </Stack>
                   </Box>
 
-                  <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: { xs: "row", sm: "column" },
+                      alignItems: "center",
+                      justifyContent: { xs: "space-between", sm: "flex-end" },
+                      gridColumn: { xs: "1 / -1", sm: "auto" },
+                      borderTop: { xs: "1px solid rgba(48,59,77,0.08)", sm: "none" },
+                      paddingTop: { xs: 2, sm: 0 },
+                    }}
+                  >
                     <IconButton
                       onClick={() => removeFromCart(item.id)}
                       sx={{
                         border: "1px solid rgba(48,59,77,0.12)",
-                        mb: 1.5,
+                        mb: { xs: 0, sm: 1.5 },
                       }}
                     >
                       <DeleteIcon />

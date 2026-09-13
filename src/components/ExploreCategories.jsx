@@ -1,4 +1,3 @@
-import React from "react";
 import HomeCard from "../components/HomeCard";
 import { Box, Typography } from "@mui/material";
 import useInView from "../hooks/useInView";
@@ -97,11 +96,10 @@ const ExploreCategories = () => {
         {/* SECOND ROW */}
         <Box className="row row-bottom">
           {secondRowCards.map((item, index) => {
-            let animation = "";
+            let animation = "animate-bottom";
 
             if (index === 0) animation = "animate-left";
             else if (index === 3) animation = "animate-right";
-            else animation = "animate-bottom";
 
             return <HomeCard key={item.id} {...item} animation={animation} />;
           })}

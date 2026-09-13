@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   Box,
   Container,
@@ -17,14 +17,13 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useProducts } from "../context/productsContext";
 import { useCart } from "../context/cartContext";
 import { useFavorites } from "../context/favouritesContext";
 
 const ProductDetailsPage = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
   const { products } = useProducts();
   const { addToCart } = useCart();
   const { favorites, toggleFavorite } = useFavorites();

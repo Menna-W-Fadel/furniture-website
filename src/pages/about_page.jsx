@@ -1,9 +1,7 @@
-import React from "react";
 import {
   Box,
   Container,
   Typography,
-  Grid,
   Paper,
   Stack,
 } from "@mui/material";
@@ -39,7 +37,18 @@ const AboutPage = () => {
         </Box>
 
         {/* GRID FEATURES */}
-        <Grid container spacing={3} sx={{ mt: 4 }}>
+        <Box
+          sx={{
+            mt: 4,
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "repeat(2, 1fr)",
+              md: "repeat(3, 1fr)",
+            },
+            gap: { xs: 2, sm: 3 },
+          }}
+        >
           {[
             {
               title: "Quality Materials",
@@ -54,30 +63,30 @@ const AboutPage = () => {
               text: "Smooth experience from browsing to delivery.",
             },
           ].map((item) => (
-            <Grid item xs={12} md={4} key={item.title}>
-              <Paper
-                sx={{
-                  p: 4,
-                  borderRadius: 4,
-                  height: "100%",
-                  border: "1px solid rgba(48,59,77,0.08)",
-                  transition: "0.3s",
-                  "&:hover": {
-                    transform: "translateY(-6px)",
-                    boxShadow: "0 15px 30px rgba(48,59,77,0.1)",
-                  },
-                }}
-              >
-                <Typography fontWeight={800} fontSize={18}>
-                  {item.title}
-                </Typography>
-                <Typography sx={{ mt: 1.5, color: "var(--color-text)" }}>
-                  {item.text}
-                </Typography>
-              </Paper>
-            </Grid>
+            <Paper
+              key={item.title}
+              sx={{
+                p: { xs: 3, md: 4 },
+                borderRadius: 4,
+                height: "100%",
+                textAlign: { xs: "center", md: "left" },
+                border: "1px solid rgba(48,59,77,0.08)",
+                transition: "0.3s",
+                "&:hover": {
+                  transform: "translateY(-6px)",
+                  boxShadow: "0 15px 30px rgba(48,59,77,0.1)",
+                },
+              }}
+            >
+              <Typography fontWeight={800} fontSize={18}>
+                {item.title}
+              </Typography>
+              <Typography sx={{ mt: 1.5, color: "var(--color-text)" }}>
+                {item.text}
+              </Typography>
+            </Paper>
           ))}
-        </Grid>
+        </Box>
 
         {/* SPLIT SECTION */}
         <Box
@@ -88,7 +97,13 @@ const AboutPage = () => {
             gap: 4,
           }}
         >
-          <Box sx={{marginTop:10}}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
             <Typography variant="h5" fontWeight={900}>
               Our Mission
             </Typography>

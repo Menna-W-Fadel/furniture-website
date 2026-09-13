@@ -11,8 +11,8 @@ import CheckoutPage from "./pages/checkout_page";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import ProductDetailsPage from "./pages/products_details_Page";
 import SuccessPayPage from "./pages/success_pay_page";
+import NotFound from "./pages/not_found_page";
 import Layout from "./pages/layout";
-
 
 function App() {
   const router = createBrowserRouter([
@@ -25,13 +25,11 @@ function App() {
         { path: "shop/:slug", element: <ProductDetailsPage /> },
         { path: "about", element: <AboutPage /> },
         { path: "contact", element: <ContactPage /> },
-
         { path: "favorites", element: <FavouritesPage /> },
-
         { path: "cart", element: <CartPage /> },
         { path: "login", element: <SigninPage /> },
         { path: "register", element: <SignupPage /> },
-         { path: "success", element: <SuccessPayPage /> },
+        { path: "success", element: <SuccessPayPage /> },
         {
           path: "checkout",
           element: (
@@ -40,17 +38,12 @@ function App() {
             </ProtectedRoute>
           ),
         },
+        { path: "*", element: <NotFound /> },
       ],
     },
-
-    // { path: "*", element: <NotFound /> },
   ]);
 
-  return (
-
-    <RouterProvider router={router} />
-    
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
